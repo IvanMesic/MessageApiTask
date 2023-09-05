@@ -29,8 +29,6 @@ namespace InfobipRecruitmentAssingment_Mesic
             IList<FileMessage> fileMessages = _fileRepo.ReadMessages();
             List<ResponseMessage> newMessages = new List<ResponseMessage>();
 
-            Console.WriteLine($"Total messages read from file: {fileMessages.Count}");
-
             foreach (var smsMessage in fileMessages)
             {
                 try
@@ -43,8 +41,6 @@ namespace InfobipRecruitmentAssingment_Mesic
 
                     newMessages.Add(DeserialiseResponse(response));
 
-                    Console.WriteLine($"Message sent: {smsMessage}");
-                    Console.WriteLine($"API Response: {response}");
                 }
                 catch (Exception ex)
                 {
@@ -96,10 +92,6 @@ namespace InfobipRecruitmentAssingment_Mesic
         {
             if (messageIdToDescription.TryGetValue(smsMessage.MessageId, out string description))
             {
-                Console.WriteLine($"Message sent: {smsMessage}\n");
-
-                Console.WriteLine($"API Response: {response}\n");
-
                 smsMessage.MessageDescription = description;
             }
         }
